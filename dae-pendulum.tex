@@ -60,7 +60,32 @@ The DAE can also be decomposed into a DAE of four $1^{\st}$-order ODEs plus an a
 	m \dot{v} &=& mg - f\dfrac{y}{l} \\
 	0 &=& x^2 + y^2 - l^2 ~,
 \end{eqnarray*}
-again with the initial conditions and parameters given.
+again with the initial conditions and parameters given.  If written in standard ODE form, it is given by
+\begin{eqnarray*}
+	\begin{pmatrix}
+	1 & 0 & 0 & 0 & 0 \\
+	0 & m & 0 & 0 & 0 \\
+	0 & 0 & 1 & 0 & 0 \\
+	0 & 0 & 0 & m & 0 \\
+	0 & 0 & 0 & 0 & 0
+	\end{pmatrix} 
+	\dfrac{\ud}{\ud t} \begin{pmatrix}
+	x \\ u \\ y \\ v \\ w
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	u \\ -f\dfrac{x}{l} \\ v \\ mg - f\dfrac{y}{l} \\ x^2 + y^2 - l^2
+	\end{pmatrix}
+\end{eqnarray*}
+or
+\begin{eqnarray*}
+	\mbf{M} \frac{\ud}{\ud t} \mbf{x} = \mbf{f}.
+\end{eqnarray*}
+Note that since $\mbf{M}$ is singular, it \textbf{CANNOT}  be rewritten as 
+\begin{eqnarray*}
+	\frac{\ud}{\ud t} \mbf{x} = \mbf{M}^{-1}\mbf{f}.
+\end{eqnarray*}
+This document shows how to solve this system despite the singular matrix $\mbf{M}$.
 
 \section{Intro: deriving the derivative matrix}
 
