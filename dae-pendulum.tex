@@ -204,48 +204,41 @@ Letting $X = diag(x)$, $U = diag(u)$, and so on, as well as $1 = 1_{N+1}$ and $0
 \end{eqnarray}
 but with the appropriate substitution corresponding to the substitutions of the ODEs / constraints with the initial condition constraints.
 
-As the relevent information is already convered above, I will simply simply plot and compare the solutions $x$ and $y$ as calculated from the two systems, and refer the reader to the short Octave source code for additional clarification | the code is fewer than $200$ lines long and that includes writing the Newton-Raphson method subroutine, solving both the ODE and DAE cases, many blank lines, and less than a second to run.
-
-Last note:  This method of solving ODEs and DAEs can be tweaked to act as a time-stepping scheme, with the initial conditions supplied by the previous time-step.  While I have not implemented there here (partly for simplicity and partly due to laziness), such a modification is important.  In this example, the numerical problem becomes unstable should I increase the final time further without modifying the Newton-Raphson method | the Newton-Raphson method, with its strict Lipschitz continuous requirement, can be mercurial.
-
-
-\subsection{Code and results}
+	
+\subsection{Execution}
 
 
 The main part of the code, in ``pendulum.m,'' consists of three lines:
 \footnotesize{
 \begin{lstlisting}[language=Octave, frame=single] 
 
-%% Solve DAE
-[u, success] = solve(@func_dae, @jacobian_dae, w, op, param, ic);
+[u, success] = solve(@func, @jacobian, w, op, param, ic);
 
-%% Solve ODE
-[u, success] = solve(@func_ode, @jacobian_ode, th, op, param, ic);
-
-%% Plot and compare y for ODE and DAE solutions
-hold off;plot(t, y); hold on; plot(t, y_ode, 'ro'); hold off;
+%% Plot DAE solution
+hold off;
+plot(sol.t, sol.y, 'ro');
 
 \end{lstlisting}
 }
 \normalsize{}
-Of course, along with the Newton-Raphson subroutine ``\textit{solve},'' the functions ``\textit{\text{func\_dae}},'' ``\textit{\text{jacobian\_dae}},'' ``\textit{\text{func\_ode}},'' and ``\textit{\text{jacobian\_ode}}'' have to be supplied.
+Of course, along with the Newton-Raphson subroutine ``\textit{solve},'' the functions ``\textit{\text{func}},'' and ``\textit{\text{jacobian}},'' have to be supplied.
 
 
-The follow results are the numerical solutions for the systems described above: DAE, Equations $(18 - 22)$; and ODE, Equation $(14)$.  
+The program numerically solves the DAE given by Equations $(18 - 22)$, with the Jacobian given by Equation $(23)$ after appropriately modified to take into account the initial conditions.
 
 The parameters are $N = 100$, $m = 1$, $l = 13.7$, and $g = 10$.
 
-The initial conditions are $x_0 = 11$, $y_0 = \sqrt{l^2 - x_0^2}$, $u_0 = 0$, $v_0 = 0$, $f_0 = \dfrac{mg}{l}y_0$, $\theta_0 = \tan^{-1}\left( x_0 / y_0\right)$, and $\omega_0 = 0$.
+The initial conditions are $x_0 = 11$, $y_0 = \sqrt{l^2 - x_0^2}$, $u_0 = 0$, $v_0 = 0$, $f_0 = \dfrac{mg}{l}y_0$, and $\omega_0 = 0$.
 
 %\begin{figure}[!h]
-	\begin{center}
-		\includegraphics[width = 0.6\textwidth]{x.eps}
+%	\begin{center}
+%		\includegraphics[width = 0.6\textwidth]{x.eps}
 %	\end{center}
 %\end{figure}
 %\begin{figure}
 %	\begin{center}
-		\includegraphics[width = 0.6\textwidth]{y.eps}
-	\end{center}
+%		\includegraphics[width = 0.6\textwidth]{y.eps}
+%	\end{center}
 %\end{figure}
 %%\begin{figure}
 %	\begin{center}
