@@ -12,6 +12,5 @@ function [D, x] = cheb(N, l, r)
   D = (c*(1./c)')./(dX + (eye(N+1)));
   D = D - diag(sum(D'));
 
-  x = -x;
-  x = (r-l)*(x+1)/2 + l;
-  D = D * 2 / (l-r);
+  x = ((r-l) * x + r + l) / 2;               
+  D = D * 2 / (r - l);

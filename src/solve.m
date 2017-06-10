@@ -7,6 +7,7 @@ function [u, success] = solve(func, jacobian, w, op, param, ic)
   while (res > param.tol)
     % check to see if solution is blowing up
     if ((iter > 100) && (res > 1))
+       "*** Newton-Raphson subroutine FAILED to converge ***"
        success = false;
        return;
     endif
@@ -16,7 +17,7 @@ function [u, success] = solve(func, jacobian, w, op, param, ic)
     u   = u - du;
     F   = func(u, op, param, ic);
     iter = iter + 1;
-    res = norm(F)
+    res = norm(F);
   endwhile
   success = true;
 endfunction

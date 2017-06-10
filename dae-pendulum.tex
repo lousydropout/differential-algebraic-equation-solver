@@ -21,6 +21,12 @@
 \newcommand{\braket}[2]{\left\langle #1 | #2\right\rangle}
 \newcommand{\mbf}[1]{\mathbf{\boldsymbol{#1}}}
 \newcommand{\ddt}[1]{\frac{\ud #1}{\ud t}}
+\newcommand{\st}{\mathrm{st}}
+\newcommand{\nd}{\mathrm{nd}}
+\newcommand{\rd}{\mathrm{rd}}
+\newcommand{\nth}{\mathrm{th}}
+
+
 
 \title{Direct collocation method for differential-algebraic equations (DAEs)}
 \author{Vincent Chan}
@@ -46,7 +52,7 @@ and is equivalent to the ODE
 \end{eqnarray*}
 
 
-The DAE can also be decomposed into a DAE of four $1^{st}$-order ODEs plus an algebraic constraint:
+The DAE can also be decomposed into a DAE of four $1^{\st}$-order ODEs plus an algebraic constraint:
 \begin{eqnarray*}
 	\dot{x} &=& u \\
 	m\dot{u} &=& - f\dfrac{x}{l} \\
@@ -64,7 +70,7 @@ Consider the expansion of an arbitrary (but smooth) function onto some orthogona
 \end{eqnarray}
 for $x \in \left[ a, b \right]$.  Here, I actually have in mind for $\left\lbrace T_n(x) \right\rbrace$ the Chebyshev polynomials and $[a, b] = [-1, 1]$, but any set of orthogonal polynomials will serve as a basis.
 
-In any of these orthogonal set of polynomials, $T_n(x)$ is a $n^{th}$-order polynomial.  As such, for well behaved functions, it is sufficient to consider only the first $N$ terms, for some natural number $N$:
+In any of these orthogonal set of polynomials, $T_n(x)$ is a $n^{\nth}$-order polynomial.  As such, for well behaved functions, it is sufficient to consider only the first $N$ terms, for some natural number $N$:
 \begin{eqnarray}
 	f(x) = \sum_{n = 0}^{N} a_n T_n(x)~,
 \end{eqnarray}
@@ -166,7 +172,7 @@ In the polar coordinate, along with the substitution of the constraint, the resu
 \end{eqnarray}
 with initial condition $\theta(t_0) = \theta_0$.  In the small angle approximation $\sin \theta \approx \theta$, we get simple harmonic motion.
 
-But since we want to compare the results with the DAE case (or, rather, the other way around), we also consider the system in the $(x, y)$-coordinate system.  The reason for this choice of handedness is so that sine and cosine may be replaced as $x/l$ and $y/l$.  The resulting system of ODEs and algebraic constraints, or DAE, is
+But since we want to solve it as a DAE, we consider the system in the $(x, y)$-coordinate system (so that sine and cosine may be replaced as $x/l$ and $y/l$).  The resulting system of ODEs and algebraic constraints, or DAE, is
 \begin{eqnarray}
 	m \dfrac{\ud^2}{\ud t^2} x + fx/l &=& 0\\
 	m \dfrac{\ud^2}{\ud t^2} y + fy/l - mg &=&  0\\
@@ -176,7 +182,7 @@ with initial conditions given for $x, y, \dot{x},$ and $\dot{y}$, and where $f$ 
 
 Notice that here, we must choose $4$ ODEs / algebraic equations to replace with the initial conditions.  Assuming the initial conditions were chosen properly, then the initial tension force $f$ is also known.  As such, we may safely replace $3$ of the equations without losing information.  Unfortunately, we have $4$ initial conditions to set and I just don't know how to do that here.
 
-Instead, I choose to rewrite each of the $2^{nd}$-order ODEs as two $1^{st}$-order ODEs.  Then, the system becomes
+Instead, I choose to rewrite each of the $2^{\nd}$-order ODEs as two $1^{\st}$-order ODEs.  Then, the system becomes
 \begin{eqnarray} \label{eq:func_dae}
 	\dot{x} - u &=& 0 \\
 	ml\dot{u} + fx &=& 0 \\
