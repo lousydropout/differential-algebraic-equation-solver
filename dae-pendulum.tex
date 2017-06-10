@@ -101,7 +101,7 @@ The only issue left is choosing the optimal set of points $\left\lbrace x_n \rig
 	\item Gauss-Legendre points, where are the zeros of the derivative of the highest order polynomial, $T'_N(x)$ plus the boundary points (which varies depending on the choice of othogonal polynomials).
 \end{enumerate}
 
-For the purpose solving differential equations on a compact space (so that the problem of dealing with infinitly far away boundaries can be ignored), the Gauss-Legendre set of collocation points is the obvious choice.
+For the purpose solving differential equations on a compact space (so that the problem of dealing with infinitly far away boundaries can be ignored), the Gauss-Legendre set of collocation points is the obvious choice.  \textbf{Further, the matrix $D$ has been worked out and can be found in, for example, the appendix of Boyd's book.}
 
 \section{Ordinary Differential Equations}
 
@@ -205,30 +205,23 @@ Letting $X = diag(x)$, $U = diag(u)$, and so on, as well as $1 = 1_{N+1}$ and $0
 but with the appropriate substitution corresponding to the substitutions of the ODEs / constraints with the initial condition constraints.
 
 	
-\subsection{Execution}
+\subsection{Code}
+
+There are $5$ files in total: \textit{cheb.m}, \textit{solve.m}, \textit{func.m}, \textit{jacobian.m}, and \textit{pendulum.m}.
+
+The first two files, \textit{cheb.m} and \textit{solve.m}, should not be touched. \textit{cheb.m} contains a function ``cheb'' which outputs the derivative matrix $D$ and collocation points $x$.  \textit{solve.m} contains a function that solves a system of nonlinear equations using the Newton--Raphson method.
+
+The $3^\rd$, \textit{func.m}, consists of a vector function containing the left-hand side of Equations (18-22), for each collocation point, and with initial conditions included.  The $4^\nth$, \textit{jacobian.m}, consists of the Jacobian for the just-mentioned vector function.
+
+The $5^\nth$, \textit{pendulum.m}, is the main program, and is separated into two main parts.  The first part consist of setting up the pendulum problem given by the DAE, see Equations (18-22).  The second part solves the DAE and consist primarily of while loop. The main thing to note (since some programmers have note seen this) is that I have created the data structures \textit{param}, \textit{op}, \textit{ic}, and \textit{sol} to group certain elements together for clarity.  As likely expected, each iteration of the while-loop is one ``timestep,'' each of which contains $N$ collocation points. 
 
 
-The main part of the code, in ``pendulum.m,'' consists of three lines:
-\footnotesize{
-\begin{lstlisting}[language=Octave, frame=single] 
-
-[u, success] = solve(@func, @jacobian, w, op, param, ic);
-
-%% Plot DAE solution
-hold off;
-plot(sol.t, sol.y, 'ro');
-
-\end{lstlisting}
-}
-\normalsize{}
-Of course, along with the Newton-Raphson subroutine ``\textit{solve},'' the functions ``\textit{\text{func}},'' and ``\textit{\text{jacobian}},'' have to be supplied.
-
-
-The program numerically solves the DAE given by Equations $(18 - 22)$, with the Jacobian given by Equation $(23)$ after appropriately modified to take into account the initial conditions.
-
-The parameters are $N = 100$, $m = 1$, $l = 13.7$, and $g = 10$.
-
-The initial conditions are $x_0 = 11$, $y_0 = \sqrt{l^2 - x_0^2}$, $u_0 = 0$, $v_0 = 0$, $f_0 = \dfrac{mg}{l}y_0$, and $\omega_0 = 0$.
+%
+%The program numerically solves the DAE given by Equations $(18 - 22)$, with the Jacobian given by Equation $(23)$ after appropriately modified to take into account the initial conditions.
+%
+%The parameters are $N = 100$, $m = 1$, $l = 13.7$, and $g = 10$.
+%
+%The initial conditions are $x_0 = 11$, $y_0 = \sqrt{l^2 - x_0^2}$, $u_0 = 0$, $v_0 = 0$, $f_0 = \dfrac{mg}{l}y_0$, and $\omega_0 = 0$.
 
 %\begin{figure}[!h]
 %	\begin{center}
