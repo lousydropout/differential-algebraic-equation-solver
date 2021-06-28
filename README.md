@@ -1,4 +1,6 @@
-# The collocation method and Differential Algebraic Equations (DAEs)
+# Solving Differential Algebraic Equations (DAEs) via the Collocation Method
+
+**_Note: This readme is also available in pdf form (see file `direct collocation method.pdf`) and would likely provide a nicer reading experience as there are a few things that Gitlab is unable to render properly._**
 
 The goal here is to solve differential-algebraic equations (DAEs) via the collocation method and somehow validate the solution.  With initial conditions and paramaters given, the specific DAE considered here is
 ```math
@@ -11,7 +13,7 @@ and is equivalent to the ODE
 m \dfrac{\ud^2 \theta }{\ud t^2} + \dfrac{m g}{l} \sin \theta = 0~.
 ```
 
-The DAE can also be decomposed into a DAE of four $1^{st}$-order ODEs plus an algebraic constraint:
+The DAE can also be decomposed into a DAE of four $`1^{st}`$-order ODEs plus an algebraic constraint:
 ```math
 	\dot{x} &=& u \\
 	m\dot{u} &=& - f\dfrac{x}{l} \\
@@ -184,7 +186,7 @@ hold off;plot(t, y); hold on; plot(t, y_ode, 'ro'); hold off;
 Of course, along with the Newton-Raphson subroutine _solve_, the functions _func\_dae_, _jacobian\_dae_, _func\_ode_, and _jacobian\_ode_ have to be supplied.
 
 
-The follow results are the numerical solutions for the systems described above: DAE, Equations $`(18 - 22)`$; and ODE, Equation $`(14)`$.  
+The follow results are the numerical solutions for the systems described above: DAE and ODE.  
 
 The parameters are $`N = 100`$, $`m = 1`$, $`l = 13.7`$, and $`g = 10`$.
 
