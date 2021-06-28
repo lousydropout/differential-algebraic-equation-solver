@@ -181,7 +181,7 @@ hold off;plot(t, y); hold on; plot(t, y_ode, 'ro'); hold off;
 
 ```
 
-Of course, along with the Newton-Raphson subroutine ``\textit{solve},'' the functions ``\textit{\text{func\_dae},'' ``\textit{\text{jacobian\_dae}},'' ``\textit{\text{func\_ode}},'' and ``\textit{\text{jacobian\_ode}}'' have to be supplied.
+Of course, along with the Newton-Raphson subroutine _solve_, the functions _func\_dae_, _jacobian\_dae_, _func\_ode_, and _jacobian\_ode_ have to be supplied.
 
 
 The follow results are the numerical solutions for the systems described above: DAE, Equations $`(18 - 22)`$; and ODE, Equation $`(14)`$.  
@@ -190,7 +190,5 @@ The parameters are $`N = 100`$, $`m = 1`$, $`l = 13.7`$, and $`g = 10`$.
 
 The initial conditions are $`x_0 = 11`$, $`y_0 = \sqrt{l^2 - x_0^2}`$, $`u_0 = 0`$, $`v_0 = 0`$, $`f_0 = \dfrac{mg}{l}y_0`$, $`\theta_0 = \tan^{-1}\left( x_0 / y_0\right)`$, and $`\omega_0 = 0`$.
 
-![](x.eps)
-![](y.eps)
-![](f.eps)
+(Gitlab was unable to render the figures `x.eps`, `y.eps`, and `f.eps`. However, the figures can be found in this repo.)
 
