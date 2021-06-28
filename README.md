@@ -190,18 +190,7 @@ The parameters are $`N = 100`$, $`m = 1`$, $`l = 13.7`$, and $`g = 10`$.
 
 The initial conditions are $`x_0 = 11`$, $`y_0 = \sqrt{l^2 - x_0^2}`$, $`u_0 = 0`$, $`v_0 = 0`$, $`f_0 = \dfrac{mg}{l}y_0`$, $`\theta_0 = \tan^{-1}\left( x_0 / y_0\right)`$, and $`\omega_0 = 0`$.
 
-%\begin{figure}[!h]
-	\begin{center}
-		\includegraphics[width = 0.6\textwidth]{x.eps}
-%	\end{center}
-%\end{figure}
-%\begin{figure}
-%	\begin{center}
-		\includegraphics[width = 0.6\textwidth]{y.eps}
-	\end{center}
-%\end{figure}
-%%\begin{figure}
-%	\begin{center}
-%		\includegraphics[width = 0.5\textwidth]{f.eps}
-%	\end{center}
-%\end{figure}
+![](x.eps)
+![](y.eps)
+![](f.eps)
+
